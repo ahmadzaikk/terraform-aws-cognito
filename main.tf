@@ -3,6 +3,8 @@ resource "aws_cognito_user_pool" "this" {
   auto_verified_attributes  = var.auto_verified_attributes
   mfa_configuration         = var.mfa_configuration
 
+  alias_attributes = ["email", "preferred_username"]
+
   password_policy {
     minimum_length                   = var.password_minimum_length
     require_lowercase                = var.require_lowercase
@@ -18,6 +20,7 @@ resource "aws_cognito_user_pool" "this" {
 
   #tags = var.tags
 }
+
 
 
 resource "aws_cognito_user_pool_client" "this" {

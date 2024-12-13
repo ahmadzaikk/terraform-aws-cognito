@@ -42,7 +42,7 @@ resource "random_password" "temporary_password" {
   special          = true
   upper            = true
   lower            = true
-  number           = true
+  numeric           = true
   override_special = "!@#$%&*"  # Customize allowed special characters if needed
 }
 

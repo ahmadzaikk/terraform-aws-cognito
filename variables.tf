@@ -117,14 +117,15 @@ variable "supported_identity_providers" {
 }
 
 variable "users" {
-  description = "List of users to create in Cognito"
+  description = "List of users to be created in the Cognito User Pool"
   type = list(object({
     username           = string
     email              = string
-    temporary_password = string
+    temporary_password = optional(string) # Optional if you want to generate it dynamically
   }))
-  default = []
+  default = [] # Provide default values or keep it empty
 }
+
 
 variable "user_pool_domain_name" {
   description = "Optional domain name for the Cognito User Pool. Defaults to the user pool ID if not provided."

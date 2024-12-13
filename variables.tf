@@ -1,3 +1,9 @@
+variable "aws_region" {
+  description = "The AWS region where the Cognito User Pool is deployed"
+  type        = string
+  default     = "us-west-2"  # You can set a default region if you want
+}
+
 # Variable for user pool name
 variable "user_pool_name" {
   description = "The name of the Cognito User Pool"

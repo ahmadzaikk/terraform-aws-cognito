@@ -43,7 +43,7 @@ resource "random_password" "temporary_password" {
   upper            = true
   lower            = true
   numeric           = true
-  override_special = "!"  # Customize allowed special characters if needed
+  override_special = "!_@"  # Customize allowed special characters if needed
 }
 
 resource "aws_cognito_user" "this" {
@@ -53,9 +53,11 @@ resource "aws_cognito_user" "this" {
   temporary_password = random_password.temporary_password.result
 
   attributes = {
-    email = var.users[count.index].email
+    email          = var.users[count.index].email
+    email_verified = "true" # Automatically mark the email as verified
   }
 }
+
 
 
 resource "aws_cognito_user_pool_domain" "this" {

@@ -37,16 +37,26 @@ resource "aws_cognito_user_pool_client" "this" {
 }
 
 
+resource "random_password" "temporary_password" {
+  length           = 12  # Adjust length as per policy
+  special          = true
+  upper            = true
+  lower            = true
+  number           = true
+  override_special = "!@#$%&*"  # Customize allowed special characters if needed
+}
+
 resource "aws_cognito_user" "this" {
   count              = var.enable_user_creation ? length(var.users) : 0
   user_pool_id       = aws_cognito_user_pool.this.id
   username           = var.users[count.index].username
-  temporary_password = var.users[count.index].temporary_password
+  temporary_password = random_password.temporary_password.result
 
   attributes = {
     email = var.users[count.index].email
   }
 }
+
 
 resource "aws_cognito_user_pool_domain" "this" {
   domain       = var.user_pool_domain_name

@@ -119,8 +119,9 @@ variable "users" {
 }
 
 variable "user_pool_domain_name" {
-  description = "Custom or AWS-managed domain name for the Cognito User Pool"
+  description = "Optional domain name for the Cognito User Pool. Defaults to the user pool ID if not provided."
   type        = string
+  default     = null
 }
 
 

@@ -112,4 +112,10 @@ variable "users" {
   default = []
 }
 
+variable "user_pool_domain_name" {
+  description = "Custom or AWS-managed domain name for the Cognito User Pool"
+  type        = string
+}
+
+
 

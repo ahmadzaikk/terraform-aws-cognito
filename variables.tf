@@ -104,14 +104,15 @@ variable "supported_identity_providers" {
 
 # Variable to hold user data for dynamic user creation
 variable "users" {
-  description = "A list of users to create in Cognito"
+  description = "List of users to create in Cognito"
   type = list(object({
-    username          = string
-    email             = string
-    phone_number      = string
+    username           = string
+    email              = string
     temporary_password = string
   }))
+  default = []
 }
+
 
 # Variable for tags to apply to the resources
 variable "tags" {

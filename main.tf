@@ -43,7 +43,7 @@ resource "random_password" "temporary_password" {
   upper            = true
   lower            = true
   numeric           = true
-  override_special = "!_@"  # Customize allowed special characters if needed
+  override_special = "!"  # Customize allowed special characters if needed
 }
 
 resource "aws_cognito_user" "this" {

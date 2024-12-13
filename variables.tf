@@ -114,9 +114,13 @@ variable "users" {
 }
 
 
-# Variable for tags to apply to the resources
-variable "tags" {
-  description = "Tags to apply to resources"
-  type        = map(string)
-  default     = {}
+variable "users" {
+  description = "List of users to create in Cognito"
+  type = list(object({
+    username           = string
+    email              = string
+    temporary_password = string
+  }))
+  default = []
 }
+

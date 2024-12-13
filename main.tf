@@ -38,6 +38,6 @@ resource "aws_cognito_user" "this" {
 }
 
 resource "aws_cognito_user_pool_domain" "this" {
-  domain       = coalesce(var.user_pool_domain_name, aws_cognito_user_pool.this.id)
+  domain       = var.user_pool_name
   user_pool_id = aws_cognito_user_pool.this.id
 }

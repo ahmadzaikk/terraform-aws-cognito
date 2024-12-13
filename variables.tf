@@ -89,7 +89,7 @@ variable "explicit_auth_flows" {
 variable "allowed_oauth_flows" {
   description = "The allowed OAuth flows"
   type        = list(string)
-  default     = ["implicit", "code"]
+  default     = ["code"]
 }
 
 variable "allowed_oauth_scopes" {

@@ -1,3 +1,10 @@
+
+variable "enable_user_creation" {
+  description = "Enable or disable user creation in the Cognito User Pool."
+  type        = bool
+  default     = false
+}
+
 variable "aws_region" {
   description = "The AWS region where the Cognito User Pool is deployed"
   type        = string

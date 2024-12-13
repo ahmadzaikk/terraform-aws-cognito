@@ -12,7 +12,7 @@ resource "aws_cognito_user_pool" "this" {
     temporary_password_validity_days = var.temporary_password_validity_days
   }
 
-  tags = var.tags
+  #tags = var.tags
 }
 
 resource "aws_cognito_user_pool_client" "this" {

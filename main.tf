@@ -30,7 +30,6 @@ resource "aws_cognito_user_pool_client" "this" {
 resource "aws_cognito_user" "this" {
   for_each = { for user in var.users : user.username => user }
   user_pool_id = aws_cognito_user_pool.this.id
-  email_verified     = false  
   username     = each.value.username
   attributes = {
     email        = each.value.email

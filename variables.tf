@@ -81,7 +81,7 @@ variable "allowed_oauth_flows" {
 variable "allowed_oauth_scopes" {
   description = "The allowed OAuth scopes"
   type        = list(string)
-  default     = ["openid", "profile"]
+  default     = ["openid", "profile",email]
 }
 
 variable "callback_urls" {

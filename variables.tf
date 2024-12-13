@@ -78,6 +78,12 @@ variable "allowed_oauth_flows_user_pool_client" {
   default     = ["code"]
 }
 
+variable "explicit_auth_flows" {
+  description = "List of explicit authentication flows enabled for the user pool client."
+  type        = list(string)
+  default     = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH", "ALLOW_CUSTOM_AUTH"]
+}
+
 variable "allowed_oauth_flows" {
   description = "The allowed OAuth flows"
   type        = list(string)

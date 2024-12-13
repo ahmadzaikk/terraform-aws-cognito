@@ -28,14 +28,14 @@ resource "aws_cognito_user_pool_client" "this" {
 }
 
 resource "aws_cognito_user" "this" {
+  for_each = { for user in var.users : user.username => user }
+
   user_pool_id = aws_cognito_user_pool.this.id
-  username     = var.username
+  username     = each.value.username
   attributes = {
-    email = var.email
-    phone_number = var.phone_number
+    email        = each.value.email
+    phone_number = each.value.phone_number
   }
-  temporary_password = var.temporary_password
+  temporary_password = each.value.temporary_password
   message_action     = "SUPPRESS"  # Optional: Suppress the invitation email
 }
-
-

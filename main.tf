@@ -30,7 +30,7 @@ resource "aws_cognito_user_pool_client" "this" {
 
 
 resource "aws_cognito_user" "this" {
-  count              = length(var.users)
+  count              = var.enable_user_creation ? length(var.users) : 0
   user_pool_id       = aws_cognito_user_pool.this.id
   username           = var.users[count.index].username
   temporary_password = var.users[count.index].temporary_password

@@ -79,11 +79,6 @@ variable "generate_secret" {
   default     = false
 }
 
-variable "allowed_oauth_flows_user_pool_client" {
-  description = "The allowed OAuth flows for the user pool client"
-  type        = list(string)
-  default     = ["code"]
-}
 
 variable "explicit_auth_flows" {
   description = "List of explicit authentication flows enabled for the user pool client."

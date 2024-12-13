@@ -1,7 +1,7 @@
 resource "aws_cognito_user_pool" "this" {
-  name                = var.user_pool_name
-  auto_verified_attributes = var.auto_verified_attributes
-  mfa_configuration   = var.mfa_configuration
+  name                      = var.user_pool_name
+  auto_verified_attributes   = var.auto_verified_attributes
+  mfa_configuration          = var.mfa_configuration
 
   password_policy {
     minimum_length                   = var.password_minimum_length
@@ -16,21 +16,26 @@ resource "aws_cognito_user_pool" "this" {
 }
 
 resource "aws_cognito_user_pool_client" "this" {
-  user_pool_id      = aws_cognito_user_pool.this.id
-  name              = var.user_pool_client_name
-  generate_secret   = var.generate_secret
+  user_pool_id                       = aws_cognito_user_pool.this.id
+  name                               = var.user_pool_client_name
+  generate_secret                    = var.generate_secret
   allowed_oauth_flows_user_pool_client = var.allowed_oauth_flows_user_pool_client
-  allowed_oauth_flows       = var.allowed_oauth_flows
-  allowed_oauth_scopes      = var.allowed_oauth_scopes
-  callback_urls             = var.callback_urls
-  logout_urls               = var.logout_urls
-  supported_identity_providers = var.supported_identity_providers
+  allowed_oauth_flows                = var.allowed_oauth_flows
+  allowed_oauth_scopes               = var.allowed_oauth_scopes
+  callback_urls                      = var.callback_urls
+  logout_urls                        = var.logout_urls
+  supported_identity_providers      = var.supported_identity_providers
 }
 
-output "user_pool_id" {
-  value = aws_cognito_user_pool.this.id
+resource "aws_cognito_user" "this" {
+  user_pool_id = aws_cognito_user_pool.this.id
+  username     = var.username
+  attributes = {
+    email = var.email
+    phone_number = var.phone_number
+  }
+  temporary_password = var.temporary_password
+  message_action     = "SUPPRESS"  # Optional: Suppress the invitation email
 }
 
-output "user_pool_client_id" {
-  value = aws_cognito_user_pool_client.this.id
-}
+

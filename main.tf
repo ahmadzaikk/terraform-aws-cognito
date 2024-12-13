@@ -1,7 +1,7 @@
 resource "aws_cognito_user_pool" "this" {
   name                      = var.user_pool_name
-  auto_verified_attributes   = var.auto_verified_attributes
-  mfa_configuration          = var.mfa_configuration
+  auto_verified_attributes  = var.auto_verified_attributes
+  mfa_configuration         = var.mfa_configuration
 
   password_policy {
     minimum_length                   = var.password_minimum_length
@@ -12,8 +12,13 @@ resource "aws_cognito_user_pool" "this" {
     temporary_password_validity_days = var.temporary_password_validity_days
   }
 
+  admin_create_user_config {
+    allow_admin_create_user_only = true
+  }
+
   #tags = var.tags
 }
+
 
 resource "aws_cognito_user_pool_client" "this" {
   user_pool_id                = aws_cognito_user_pool.this.id

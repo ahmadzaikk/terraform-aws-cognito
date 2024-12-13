@@ -26,7 +26,6 @@ resource "aws_cognito_user_pool_client" "this" {
   supported_identity_providers = var.supported_identity_providers
 }
 
-
 resource "aws_cognito_user" "this" {
   count              = length(var.users)
   user_pool_id       = aws_cognito_user_pool.this.id
@@ -38,4 +37,7 @@ resource "aws_cognito_user" "this" {
   }
 }
 
-
+resource "aws_cognito_user_pool_domain" "this" {
+  domain       = var.user_pool_domain_name
+  user_pool_id = aws_cognito_user_pool.this.id
+}

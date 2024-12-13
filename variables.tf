@@ -102,7 +102,6 @@ variable "supported_identity_providers" {
   default     = ["COGNITO"]
 }
 
-# Variable to hold user data for dynamic user creation
 variable "users" {
   description = "List of users to create in Cognito"
   type = list(object({
@@ -113,14 +112,4 @@ variable "users" {
   default = []
 }
 
-
-variable "users" {
-  description = "List of users to create in Cognito"
-  type = list(object({
-    username           = string
-    email              = string
-    temporary_password = string
-  }))
-  default = []
-}
 

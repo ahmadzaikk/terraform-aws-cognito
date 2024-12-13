@@ -126,7 +126,7 @@ variable "users" {
   type = list(object({
     username           = string
     email              = string
-    #temporary_password = string
+    temporary_password = string
   }))
   default = []
 }
